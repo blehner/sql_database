@@ -38,6 +38,8 @@ CREATE TABLE occupations
 )
 GO
 
+
+
 --felhasznalok
 
 GO
@@ -46,13 +48,15 @@ CREATE TABLE users
 	id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	username VARCHAR(50) NOT NULL, --belépéshez
 	fullName VARCHAR(50) NOT NULL,
-	token VARCHAR(50),
 	roleId INT NOT NULL, -- a belépéshez itt tárolom
 	occupationId INT,
-	password VARCHAR(50) NOT NULL --belépéshez itt lesz
+	password VARCHAR(50) NOT NULL,
+	token VARCHAR(50),--belépéshez itt lesz
 	CONSTRAINT FK_OccupationId FOREIGN KEY (occupationId) REFERENCES occupations(id)
 )
 GO
+
+use Karbantarto01_DB
 
 -- eszkozok
 
@@ -130,6 +134,45 @@ ADD token varchar(50)
 GO
 
 ------2022-04-07-II-feladatsor--------------
+
+use Karbantarto01_DB
+
+GO
+INSERT INTO occupations
+VALUES
+	(
+		'root',
+		'root felhasznalo, aki a teljes admin jogokkal rendelkezik'
+	)
+GO
+
+GO
+INSERT INTO roles
+VALUES 
+	(
+		'root'
+	)
+GO
+
+GO
+INSERT INTO users
+VALUES
+	(
+		'admin',
+		'Lehner Bela',
+		1, --role id
+		1, --foglalkozas
+		'admin123',
+		'VALAMI'
+	)
+GO
+
+DELETE FROM users WHERE id = 7
+
+select * from occupations
+
+
+select * from users
 
 
 
